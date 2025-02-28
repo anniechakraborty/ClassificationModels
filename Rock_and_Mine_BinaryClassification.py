@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 class Rock_and_Mine_BinaryClassification:
+    # Data source : kaggle (https://www.kaggle.com/datasets/mayurdalvi/sonar-mine-dataset)
     # loading dataset to pandas data frame
     sonar_data = pd.read_csv('data/sonar_data.csv', header=None)
     X=[]
