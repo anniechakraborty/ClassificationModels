@@ -21,6 +21,7 @@ class Rock_and_Mine_BinaryClassification:
     model = LogisticRegression()
 
     def data_collection(self):
+        print(type(self.sonar_data))
         # getting first five records
         print(self.sonar_data.head())
         print()
@@ -104,6 +105,8 @@ if __name__ == '__main__':
 
     # reshaping the numpy array as we are predicting for one instance: passing 1, -1 indicates that there is one instance and we are predicting the label for one instance
     input_data = input_data.reshape(1, -1)
+
+    # reshape(-1, 1) converts a 1D array of shape (n,) into a 2D column vector of shape (n,1), which is required by some ML models
 
     classifier.prediction(input_data)
 
