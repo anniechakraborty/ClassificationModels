@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
@@ -56,6 +57,13 @@ class PCOS_Diagnosis:
         print(self.X)
         print()
         print(self.y)
+        print()
+
+        # Normalize / standardise the data to bring all column values in the same range
+        scaler = StandardScaler()
+        self.X = scaler.fit_transform(self.X)
+        print('Normalized / Standardised features')
+        print(self.X)
         print()
 
         # splitting data into training and testing sets
