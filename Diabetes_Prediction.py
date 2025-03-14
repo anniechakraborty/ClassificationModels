@@ -83,7 +83,7 @@ class Diabetes_Prediction:
         training_accuracy = accuracy_score(self.y_train, training_pred)
         print('Accuracy of the model on the training set :', training_accuracy)
         print()
-        
+
         # Evaluating the model on the test set
         y_pred = self.model.predict(self.X_test)
         accuracy = accuracy_score(self.y_test, y_pred)
@@ -99,9 +99,28 @@ class Diabetes_Prediction:
         print(precision_recall_fscore_support(self.y_test, y_pred))
         print()
 
+
+    def prediction(self):
+        print()
+        input_data = (2,197,70,45,543,30.5,0.158,53)
+        # convert to numpy array
+        input_data = np.asarray(input_data)
+        # reshape the numpy array as we are predicting for one instance: passing 1, -1 indicates that there is one instance and we are predicting the label for one instance
+        input_data = input_data.reshape(1, -1)
+
+        # now we standardise it to make sure that it is in the same way as our trainng anf testing input samples
+        scaler = StandardScaler()
+        input_data = scaler.fit_transform(input_data)
+
+        prediction = self.model.predict(input_data)
+
+        print('Prediction: ', prediction[0])
+
+
 if __name__ == '__main__':
     diabetes_prediction = Diabetes_Prediction()
     diabetes_prediction.data_analysis()
     diabetes_prediction.data_preprocessing()
     diabetes_prediction.model_training()
     diabetes_prediction.model_evaluation()
+    diabetes_prediction.prediction()
